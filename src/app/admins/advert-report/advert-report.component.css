@@ -1,0 +1,62 @@
+.mat-table {
+    overflow: auto;
+    max-height: 500px;
+}
+
+.mat-header-cell.mat-sort-header-sorted {
+    color: black;
+}
+
+.header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+    /* background-color: #e4e3e6; */
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+    display: block;
+}
+
+.total {
+    background: transparent;
+    padding: 15px;
+    margin-right: 25px;
+    float: right;
+}
+
+.mat-column-title {
+    max-width: 40%;
+}
+
+.mat-column-price {
+    max-width: 10%;
+}
+
+.mat-column-qty {
+    max-width: 9%;
+}
+
+.mat-column-total {
+    max-width: 10%;
+}
+
+.mat-column-date {
+    max-width: 16%;
+}
+
+.mat-column-type {
+    max-width: 10%;
+}
+
+img {
+    position: relative;
+    top: 4px;
+    left: 30px;
+    height: 20px;
+}
+
+.example-fill-remaining-space {
+    flex: 1 1 auto;
+}

@@ -1,0 +1,65 @@
+<div class="details">
+    <mat-toolbar color="primary">
+        <h2>Confirmed and pending orders</h2>
+        <span class="example-fill-remaining-space"></span>
+        <button mat-button (click)="exportToExcel()"><fa name="file-excel-o" size='2x'></fa></button>
+    </mat-toolbar>
+    <!-- <mat-card> -->
+    <div class="header">
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+    </div>
+
+    <div class="container mat-elevation-z8">
+        <mat-table [dataSource]="dataSource" matSort>
+            <!-- 'id', 'name', 'pending', 'confirmed' -->
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Id # </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </mat-header-cell>
+                <mat-cell *matCellDef="let row"><a aria-label mat-button routerLink="/admins/companiesreport/{{row.id}}"> {{row.name}} </a></mat-cell>
+            </ng-container>
+
+
+            <!-- Pending Column -->
+            <ng-container matColumnDef="pending">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Pending Orders </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.pending}} &euro;</mat-cell>
+            </ng-container>
+
+
+            <!-- Confirmed Column -->
+            <ng-container matColumnDef="confirmed">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Confirmed Orders </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.confirmed}} &euro;</mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            </mat-row>
+        </mat-table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        <div class="total">
+            <div>
+                <strong>Total Pending: {{totalpending}} &euro;</strong>
+            </div>
+            <div>
+                <strong>Total Confirmed: {{totalconfirmed}} &euro;</strong>
+            </div>
+            <div>
+                <strong>Total Price: {{totalorders}} &euro;</strong>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- </mat-card> -->
+</div>

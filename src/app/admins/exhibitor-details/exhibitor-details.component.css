@@ -1,0 +1,32 @@
+.exhibitordetails {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    margin: 0 auto;
+}
+
+.btn {
+    width: 100%
+}
+
+.mat-raised-button {
+    position: relative;
+    float: right;
+}
+
+.mat-form-field {
+    display: block;
+}
+
+.mat-card-content {
+    padding: 0 7%;
+}
+
+h4 {
+    display: inline-block;
+    margin: 10px 10px;
+}
+
+section {
+    margin-bottom: 25px;
+}

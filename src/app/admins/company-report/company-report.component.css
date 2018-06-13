@@ -1,0 +1,33 @@
+.details {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    max-width: 1300px;
+    margin: 0 auto 25px;
+    background: white;
+}
+
+.mat-table {
+    overflow: auto;
+    max-height: 500px;
+}
+
+.mat-header-cell.mat-sort-header-sorted {
+    color: black;
+}
+
+.header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+    background-color: #e4e3e6;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+    display: block;
+}
+
+.h2 {
+    text-align: center;
+}

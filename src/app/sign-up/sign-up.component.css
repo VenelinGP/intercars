@@ -1,0 +1,57 @@
+.signup-card {
+    max-width: 768px;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.signup .mat-toolbar {
+    margin-bottom: 25px;
+}
+
+.signup-radio-group {
+    display: inline-flex;
+    flex-direction: row;
+}
+
+.signup-radio-button {
+    margin: 5px;
+}
+
+.signup-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-content {
+    width: 70%;
+    margin: 0 auto;
+}
+
+h3 {
+    text-align: center;
+}
+
+.centertext {
+    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.center {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.center-radio-buttons {
+    width: 25%;
+    margin: 0 auto;
+}
+
+.mat-raised-button {
+    position: relative;
+    float: right;
+}
+
+.hintRedColor {
+    color: red;
+}

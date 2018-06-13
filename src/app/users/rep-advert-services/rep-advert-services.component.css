@@ -1,0 +1,72 @@
+.details {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    max-width: 1000px;
+    margin: 0 auto 25px;
+    background: white;
+}
+
+.mat-table {
+    overflow: auto;
+    max-height: 500px;
+}
+
+.mat-header-cell.mat-sort-header-sorted {
+    color: black;
+}
+
+
+/* <!-- 'id', 'title', 'price', 'unit', 'total', 'date' --> */
+
+
+/* .mat-column-id {
+    max-width: 8%;
+} */
+
+.mat-column-title {
+    max-width: 40%;
+}
+
+.mat-column-price {
+    max-width: 12%;
+}
+
+.mat-column-qty {
+    max-width: 12%;
+}
+
+.mat-column-total {
+    max-width: 12%;
+}
+
+.mat-column-date {
+    max-width: 20%;
+}
+
+.mat-column-type {
+    max-width: 10%;
+}
+
+.header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+    background-color: #e4e3e6;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+    display: block;
+}
+
+.total {
+    background: white;
+    padding: 15px;
+    margin-right: 25px;
+    float: right;
+}
+
+.wrap {
+    padding: 20px;
+}

@@ -1,0 +1,24 @@
+.login-card {
+    max-width: 600px;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.login-content {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.recovery .mat-toolbar {
+    margin-bottom: 30px;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.mat-raised-button {
+    position: relative;
+    float: right;
+}

@@ -1,0 +1,32 @@
+<div class="details">
+    <mat-toolbar color="primary">
+        <h2>Current Status for Confirmed Orders</h2>
+    </mat-toolbar>
+
+    <div class="container mat-elevation-z8">
+        <!-- 'id', 'title', 'price', 'qty', 'total', 'date' 'type'-->
+        <mat-grid-list cols="1" rowHeight="400px">
+            <mat-grid-tile>
+                    
+                 <table>
+                    <mat-card>
+                        <a mat-button routerLink="/users/reporders" routerLinkActive="active">Exhibition Area - {{ totalAreaPrice }} &euro;</a>
+                    </mat-card>
+                    <mat-card>
+                        <a mat-button routerLink="/users/repservices" routerLinkActive="active">Additional Services - {{ totalServicesPrice }} &euro;</a>
+                     </mat-card>
+                     <mat-card>
+                        <a mat-button routerLink="/users/repadvertising" routerLinkActive="active">Advertising Service - {{ totalAdsPrice }} &euro;</a>
+                    </mat-card>
+                </table>
+             </mat-grid-tile>
+        </mat-grid-list>
+
+        <div class="total">
+            <div>
+                <strong>Total Price: {{ totalPrice }} &euro;</strong>
+                <br><br>
+            </div>
+        </div>
+    </div>
+</div>

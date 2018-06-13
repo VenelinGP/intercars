@@ -1,0 +1,80 @@
+<mat-toolbar color="accent">
+    <img src="../../assets/images/logo_2018.jpg" alt="logo" />
+</mat-toolbar>
+<div class="signup">
+    <mat-card class="signup-card">
+        <mat-card-header>
+            <mat-card-content class="signup-content">
+
+                <h3 *ngIf="isYes">Are you the person who will authorize the orders on behalf of Your company?</h3>
+                <h3 *ngIf="isNo">Fill in the name and the e-mail address of the person from your company who will authorize the orders for participation.</h3>
+
+                <div class="centertext">
+                    <h4>/The authorized exhibitor is responsible for confirming all chosen items and confirms the order. Only he/she can submit an order and proceed to payment./</h4>
+                </div>
+                <div class="center">
+                    <div class="center-radio-buttons">
+                        <mat-radio-group class="signup-radio-group">
+                            <mat-radio-button class="signup-radio-button" *ngFor="let answer of answers" [checked]="answer ==='Yes'" [value]="answer" (change)="radioChange($event)">
+                                {{answer}}
+                            </mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div *ngIf="isYes">
+                        <div class="signup-container">
+                            <mat-form-field>
+                                <input #fullname matInput placeholder="Full Name" type="text" required>
+                            </mat-form-field>
+
+                            <!-- Email -->
+                            <mat-form-field>
+                                <input #email matInput placeholder="E-mail" [formControl]="emailFormControl" [errorStateMatcher]="matcher" type="email" required>
+                                <mat-hint>Enter the e-mail address where you received your invitation link.</mat-hint>
+                                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                                    Please enter a valid email address
+                                </mat-error>
+                                <mat-error *ngIf="emailFormControl.hasError('required')">
+                                    Email is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                            <!-- Email -->
+                            <mat-form-field>
+                                <input #password matInput placeholder="Password" type="password" required (keyup)="getPassword(password.value)">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input #confirmPassword matInput placeholder="Confirm Password" type="password" required (keyup)="getConfirmPassword(confirmPassword.value)">
+                                <mat-hint class="hintRedColor" *ngIf="isNotMatch">The passwords do not match!</mat-hint>
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input #phone matInput placeholder="Phone" type="text">
+                            </mat-form-field>
+                        </div>
+                        <!-- [routerLink]="['/home']" -->
+                        <button mat-raised-button color="primary" (click)="signup(fullname.value, email.value, password.value, confirmPassword.value, phone.value)">Sign Up</button>
+                    </div>
+                    <div *ngIf="isNo">
+                        <!-- <h3>Fill in the name and e-mail of the person who will authorized.</h3> -->
+                        <div class="signup-container">
+                            <mat-form-field>
+                                <input #fullname matInput placeholder="Full Name" type="text" required>
+                            </mat-form-field>
+                            <!-- Email -->
+                            <mat-form-field>
+                                <input #email matInput placeholder="E-mail" [formControl]="emailFormControl" [errorStateMatcher]="matcher" type="email" required>
+                                <mat-hint>Enter valid e-mail!</mat-hint>
+                                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                                    Please enter a valid email address
+                                </mat-error>
+                                <mat-error *ngIf="emailFormControl.hasError('required')">
+                                    Email is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                            <!-- Email -->
+                        </div>
+                        <button mat-raised-button color="primary" (click)="send(fullname.value, email.value)">Send</button>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card-header>
+    </mat-card>
+</div>

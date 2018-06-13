@@ -1,0 +1,78 @@
+<div class="details">
+    <mat-toolbar color="primary">
+        <h2>Additional Services</h2>
+    </mat-toolbar>
+    <div class="acc">
+        <h4><i>Additional equipment and services can be ordered until 15.06.2018</i></h4>
+    </div>
+    <mat-card>
+        <mat-form-field class="boothareas">
+            <mat-select [(value)]="selected" (change)="show()">
+                <mat-option *ngFor="let booked of bookedAreas" [value]="booked.id">
+                    {{ booked.viewValue }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div class="center">
+            <br>
+            <label><b>Choose Additional Services for the selected area above:</b></label>
+            <br>
+            <mat-list cols="4" rowHeight='30px' *ngFor="let item of services" style="padding-bottom: 0px">
+                <mat-list-item *ngIf="item.service_id!=color_id && item.service_id != 20">
+                    <div class="col-1">
+                        <span class="test">{{item.service_name}}</span>
+                        <mat-icon color='accent' (click)="onFocus(item.service_id)">info_outline</mat-icon>
+                    </div>
+                    <div class="col-2">
+                        <input [(ngModel)]="item.qty" type="number" min="0" max="100" (change)="onKey(item.id, item.qty)">
+                    </div>
+                    <div class="col-3">
+                        х {{item.service_price}} €/{{item.service_unit}} = {{item.qty * item.service_price}} €
+                    </div>
+                </mat-list-item>
+                <mat-list-item *ngIf="item.service_id == 20">
+                    <section class="col-1">
+                        <div class="inline">
+                            <span class="test ">{{item.service_name}}</span>
+                            <mat-icon color='accent' (click)="onFocus(item.service_id)">info_outline</mat-icon>
+                        </div>
+                        <div class="inline">
+                            <section class="test colorselect">
+                                <mat-form-field class="dropdown">
+                                    <mat-select placeholder="Choose color" [formControl]="floorColor" [ngClass]=floorColor.value>
+                                        <mat-option *ngFor="let color of colors" [value]="color.value"><img class="floor" src={{color.viewValue}}></mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </section>
+                        </div>
+                    </section>
+                    <div class="col-2">
+                        <input [(ngModel)]="item.qty" type="number" min="0" max="100" (change)="onKey(item.id, item.qty)">
+                    </div>
+                    <div class="col-3">
+                        х {{item.service_price}} €/{{item.service_unit}} = {{item.qty * item.service_price}} €
+                    </div>
+                </mat-list-item>
+            </mat-list>
+        </div>
+        <hr>
+        <h3 class="title">Selected Additional Services:</h3>
+        <div class="summary-price">
+            <mat-list cols="2" rowHeight='30px' *ngFor="let selected of selectedServices" style="padding-bottom: 0px">
+                <mat-list-item class="sum">
+                    <div class="col-1">
+                        <span class="test">{{selected.service_name}}</span>
+                    </div>
+                    <div class="col-3">
+                        <span>{{selected.qty}} х {{selected.service_price}} € = {{selected.qty * selected.service_price}} €</span>
+                    </div>
+                </mat-list-item>
+
+            </mat-list>
+            <h3>Total: {{total}} €</h3>
+        </div>
+        <div class="clearfix"></div>
+        <button *ngIf="currentRole == '3'" mat-raised-button class="left" color="accent" (click)="openDialog()">Submit order</button>
+        <button mat-raised-button class="right" color="primary" (click)="save()">Save</button>
+    </mat-card>
+</div>

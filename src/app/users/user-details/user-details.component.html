@@ -1,0 +1,31 @@
+<div class="userdetails">
+    <mat-toolbar color="primary">
+        <h2>Edit User Details</h2>
+    </mat-toolbar>
+    <mat-card>
+        <h4>User: {{user.email}}</h4>
+        <mat-card-content>
+            <mat-form-field>
+                <input #fullname matInput placeholder="Full name" [value]="user.name">
+            </mat-form-field>
+            <mat-form-field>
+                <input #email matInput placeholder="Email" [value]="user.email">
+            </mat-form-field>
+            <mat-form-field>
+                <input #phone matInput placeholder="Phone" [value]="user.phone">
+            </mat-form-field>
+            <mat-form-field>
+                <input #position matInput placeholder="Position" [value]="user.position">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-select class="role" placeholder="Role" [(value)]="selected" (change)=selectExh($event)>
+                    <mat-option value="exhibitor">Authorized Exhibitor</mat-option>
+                    <mat-option value="co-exhibitor">Exhibitor</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="btn">
+                <button mat-raised-button color="primary" (click)="save(fullname.value, email.value, phone.value, position.value)">Save</button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

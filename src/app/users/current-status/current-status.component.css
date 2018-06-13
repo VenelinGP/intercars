@@ -1,0 +1,22 @@
+.details {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    max-width: 600px;
+    margin: 0 auto 25px;
+    background: white;
+}
+
+.total {
+    font-size: 1.2em;
+    background: white;
+    padding: 15px;
+    margin-right: 25px;
+    float: right;
+}
+
+.mat-grid-tile,
+a {
+    font-size: 1.1em;
+
+}

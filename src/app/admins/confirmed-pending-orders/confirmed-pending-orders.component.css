@@ -1,0 +1,50 @@
+.details {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto 25px;
+}
+
+
+/* 'id', 'name', 'pending', 'confirmed' */
+
+.mat-column-id {
+    max-width: 8%;
+}
+
+.mat-column-name {
+    max-width: 32%;
+}
+
+.mat-column-pending {
+    max-width: 28%;
+}
+
+.mat-column-confirmed {
+    max-width: 28%;
+}
+
+.header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+.total {
+    background: transparent;
+    padding: 15px;
+    margin-right: 25px;
+    float: right;
+}
+
+.container {
+    background: white;
+}
+
+.example-fill-remaining-space {
+    flex: 1 1 auto;
+}

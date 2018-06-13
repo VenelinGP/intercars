@@ -1,0 +1,9 @@
+@import '~@angular/material/theming';
+@include mat-core();
+$mat-myred: ( 50: #f9e4e7, 100: #f1bcc2, 200: #e78f9a, 300: #dd6272, 400: #d64053, 500: #cf1e35, 600: #ca1a30, 700: #c31628, 800: #bd1222, 900: #b20a16, A100: #ffdedf, A200: #ffabaf, A400: #ff787e, A700: #ff5e66, contrast: ( 50: #000000, 100: #000000, 200: #000000, 300: #000000, 400: #ffffff, 500: #ffffff, 600: #ffffff, 700: #ffffff, 800: #ffffff, 900: #ffffff, A100: #000000, A200: #000000, A400: #000000, A700: #000000, ));
+$mat-mygrey: ( 50: #e6e7ea, 100: #c0c4c9, 200: #969da6, 300: #6b7682, 400: #4c5867, 500: #2c3b4c, 600: #273545, 700: #212d3c, 800: #1b2633, 900: #101924, A100: #65a3ff, A200: #3284ff, A400: #0066fe, A700: #005be5, contrast: ( 50: #000000, 100: #000000, 200: #000000, 300: #ffffff, 400: #ffffff, 500: #ffffff, 600: #ffffff, 700: #ffffff, 800: #ffffff, 900: #ffffff, A100: #000000, A200: #ffffff, A400: #ffffff, A700: #ffffff, ));
+$my-app-primary: mat-palette($mat-mygrey);
+$my-app-accent: mat-palette($mat-myred, 500, 900, A100);
+$my-app-warn: mat-palette($mat-red);
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+@include angular-material-theme($my-app-theme);

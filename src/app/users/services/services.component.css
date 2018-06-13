@@ -1,0 +1,158 @@
+.details {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h4 {
+    text-align: center;
+}
+
+.acc {
+    padding: 0 20px;
+    background: #cf1e35;
+    color: white;
+}
+
+.boothareas {
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.section {
+    margin-top: 15px;
+}
+
+.center {
+    width: 85%;
+    margin: 0 auto;
+}
+
+.vertical {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+input[type=number] {
+    font-size: 1rem;
+    width: 50px;
+}
+
+.left {
+    justify-content: left;
+}
+
+.mat-grid-list {
+    padding-bottom: 0;
+}
+
+.mat-list-item {
+    height: 24px;
+}
+
+.row {
+    height: 35px;
+}
+
+.col-1 {
+    width: 350px;
+}
+
+.col-2 {
+    width: 60px;
+}
+
+.col-3 {
+    width: 180px;
+}
+
+.right {
+    position: relative;
+    float: right;
+}
+
+span {
+    display: inline;
+}
+
+.summary-price {
+    text-align: right;
+    font-size: 1rem;
+}
+
+.summary-price .mat-list-item {
+    height: 16px;
+    font-weight: bold;
+}
+
+.clearfix {
+    overflow: auto;
+}
+
+.sum {
+    margin-left: 240px;
+}
+
+.title {
+    margin-left: 310px;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.colorselect {
+    padding-left: 10px;
+    margin-top: 19px;
+}
+
+.dropdown {
+    padding-left: 10px;
+    width: 90px;
+}
+
+.floor {
+    padding-top: 18px;
+    padding-left: 10px;
+}
+
+.option1 {
+    background: url("../../../assets/images/1.jpg") center / contain no-repeat;
+    white-space: nowrap
+}
+
+.option2 {
+    background: url("../../../assets/images/2.jpg") center / contain no-repeat;
+    white-space: nowrap;
+    display: inline
+}
+
+.option3 {
+    background: url("../../../assets/images/3.jpg") center / contain no-repeat;
+    white-space: nowrap;
+    display: inline
+}
+
+.option4 {
+    background: url("../../../assets/images/4.jpg") center / contain no-repeat;
+    white-space: nowrap;
+    display: inline
+}
+
+.option5 {
+    background: url("../../../assets/images/5.jpg") center / contain no-repeat;
+    white-space: nowrap;
+    display: inline
+}
+
+.option6 {
+    background: url("../../../assets/images/6.jpg") center / contain no-repeat;
+    white-space: nowrap;
+    display: inline
+}
+
+.margintop {
+    margin-top: 19px;
+}

@@ -1,0 +1,152 @@
+<div class="details">
+    <mat-toolbar color="primary">
+        <h2>Advertising Services</h2>
+    </mat-toolbar>
+    <div class="acc">
+        <h4><i>Additional equipment and services can be ordered until 15.06.2018</i></h4>
+    </div>
+    <mat-card>
+        <div class="center">
+            <br>
+            <label><b>Choose Advertising Services:</b></label>
+            <br>
+            <mat-list *ngFor="let item of services">
+                <mat-list-item *ngIf="item.service_id != fg_full_id && item.service_id != fg_half_id">
+                    <section class="col-1">
+                        <div class="inline">
+                            <span class="test">{{item.service_name}}</span>
+                            <mat-icon color='accent' *ngIf="item.service_id != 43 && item.service_id != 44" (click)="onFocus(item.service_id)">info_outline</mat-icon>
+                        </div>
+                        <div class="inline models" *ngIf="item.service_id == 43 || item.service_id == 44">
+                            <section class="test" *ngIf="item.service_id == 43 && isHostessShow">
+                                <span>Clothes for the hostess prepares:</span>
+                                <mat-form-field class="dropdownhostess">
+                                    <mat-select [(value)]="cloth_hostess">
+                                        <mat-option value="Inter Cars">Inter Cars</mat-option>
+                                        <mat-option value="Exhibitor">Exhibitor</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </section>
+                            <section class="test" *ngIf="item.service_id == 44 && isModelShow">
+                                <span>Clothes for the model prepares:</span>
+                                <mat-form-field class="dropdown">
+                                    <mat-select [(value)]="cloth_model">
+                                        <mat-option value="Inter Cars">Inter Cars</mat-option>
+                                        <mat-option value="Exhibitor">Exhibitor</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </section>
+                        </div>
+                    </section>
+                    <div class="col-2">
+                        <input [(ngModel)]="item.qty" type="number" min="0" max="100" (change)="onKey(item.id, item.service_id, item.qty)">
+                    </div>
+                    <div class="col-3">
+                        х {{item.service_price}} €<span *ngIf="item.service_id != '46' && item.service_id != '47'">/{{item.service_unit}}</span>={{item.qty * item.service_price}}€
+                    </div>
+                </mat-list-item>
+            </mat-list>
+            <mat-list *ngFor="let item of services">
+                <mat-list-item *ngIf="item.service_id == fg_full_id || item.service_id == fg_half_id" class="fair" [ngClass]="{'fair':item.qty > 0}">
+                    <div matLine class="box">
+                        <section class="col-4">
+                            <div class="inline">
+                                <span class="test">{{item.service_name}}</span>
+                                <mat-icon color='accent' (click)="onFocus(item.service_id)">info_outline</mat-icon>
+                            </div>
+                        </section>
+                        <div class="col-6">
+                            <input [(ngModel)]="item.qty" type="number" min="0" max="100" (change)="onKey(item.id, item.service_id, item.qty)">
+                        </div>
+                        <div class="col-3">
+                            х {{item.service_price}} &euro; = {{item.qty * item.service_price}} &euro;
+                        </div>
+                    </div>
+
+                    <!-- NEW SECTION -->
+                    <div matLine *ngIf="(item.service_id == fg_full_id && isShowFull) || (item.service_id == fg_half_id && isShowHalf)">
+                        <h3 matLine>Expo web site and fair guide</h3>
+                        <div matLine>
+                            <mat-form-field class="col-5 descr" *ngIf='item.service_id == fg_full_id'>
+                                <textarea #textFull [(ngModel)]="textValueFull" matInput rows="8" cols="60" placeholder="Short description of the company + accent for the fair."></textarea>
+                                <mat-hint>The materials for Fair guide should be in Bulgarian.</mat-hint>
+                            </mat-form-field>
+                            <mat-form-field class="col-5 descr" *ngIf='item.service_id == fg_half_id'>
+                                <textarea #textHalf [(ngModel)]="textValueHalf" matInput rows="8" cols="60" placeholder="Short description of the company + accent for the fair."></textarea>
+                                <mat-hint>The materials for Fair guide should be in Bulgarian.</mat-hint>
+                            </mat-form-field>
+                            <div class="col-5 box1">
+                                <div class="innnerbox">
+                                    <div class=" ">
+                                        <p class="clearmargin">You can upload only one file. If you want to upload more, </p>
+                                        <p class="clearmargin">do them in the Zip or Rar archive.</p>
+                                        <p class="clearmargin">Supported formats: .doc, .docx, .pdf, .png, .jpg, .zip, .rar</p>
+                                    </div>
+                                    <!-- <div class="bord hei">
+                                        <section *ngIf="isNotEmpty">
+                                            <span>Added File:</span>
+                                            <mat-list>
+                                                <mat-list-item *ngFor="let file of fileName">File: {{file.name}}</mat-list-item>
+                                            </mat-list>
+                                        </section>
+                                    </div> -->
+                                    <section *ngIf="uploaded_full && item.service_id == fg_full_id">
+                                        <span>Uploaded File:</span>
+                                        <a target="_blank" href="{{uploaded_full}}">
+                                            <mat-icon color='accent' mat-list-icon>get_app</mat-icon>
+                                        </a>{{ uploaded_name_full }}
+                                    </section>
+                                    <section *ngIf="uploaded_half && item.service_id == fg_half_id">
+                                        <span>Uploaded File:</span>
+                                        <a target="_blank" href="{{uploaded_half}}">
+                                            <mat-icon color='accent' mat-list-icon>get_app</mat-icon>
+                                        </a>{{ uploaded_name_half }}
+                                    </section>
+                                </div>
+                                <div class="buttons">
+                                    <input flex="1" id="fileInput" class="hide-it" type="file" multiple (change)="fileChange($event.target.files)">
+                                    <button class="right" mat-raised-button color="primary" [disabled]="!isNotEmpty" (click)="upload(item.service_id)">Upload</button>
+                                    <button class="right" mat-raised-button (click)="openInput()">Select File to Upload</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- NEW SECTION -->
+                    <!-- <mat-divider></mat-divider> -->
+                </mat-list-item>
+            </mat-list>
+        </div>
+
+
+        <br>
+        <br>
+        <!-- <button mat-raised-button class="right" color="primary" (click)="submit()">Submit</button> -->
+        <hr>
+        <h4 class="summary-price">Selected Advertising Services:</h4>
+        <div class="summary-price">
+            <mat-list cols="2" rowHeight='30px' *ngFor="let selected of selectedServices" style="padding-bottom: 0px">
+                <mat-list-item class="sum">
+                    <div class="row">
+                        <div style="text-align:right;">
+                            <span class="test" *ngIf="selected.service_id=='43'">Hostess at your booth - {{ cloth_hostess }} <span>{{selected.qty}} х {{selected.service_price}} € = {{selected.qty * selected.service_price}} €</span>
+                            </span>
+                            <span class="test" *ngIf="selected.service_id=='44'">Model - {{ cloth_model }} <span>{{selected.qty}} х {{selected.service_price}} € = {{selected.qty * selected.service_price}} €</span>
+                            </span>
+                            <span class="test" *ngIf="selected.service_id!='43' && selected.service_id!='44'">
+                            {{ selected.service_name }}
+                            <span>{{selected.qty}} х {{selected.service_price}} € = {{selected.qty * selected.service_price}} €</span>
+                            </span>
+
+                        </div>
+                    </div>
+
+                </mat-list-item>
+            </mat-list>
+            <h3>Total: {{total}} €</h3>
+        </div>
+        <div class="clearfix"></div>
+        <button *ngIf="currentRole == '3'" mat-raised-button class="left" color="accent" (click)="openDialog()">Submit order</button>
+        <button mat-raised-button class="right" color="primary" (click)="save()">Save</button>
+    </mat-card>
+</div>

@@ -1,0 +1,40 @@
+<div class="details">
+    <mat-toolbar color="primary">
+        <h2>Additional Services Report</h2>
+        <span class="example-fill-remaining-space"></span>
+        <button mat-button (click)="exportToExcel()"><fa name="file-excel-o" size='2x'></fa></button>
+    </mat-toolbar>
+    <div class="header">
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+    </div>
+    <div class="container mat-elevation-z8">
+        <!--'options' 'name', 'pc', 'price' -->
+        <mat-table #table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="options">
+                <mat-header-cell showColumn showInput="none" *matHeaderCellDef mat-sort-header></mat-header-cell>
+                <mat-cell showColumn showInput="none" *matCellDef="let service"> {{service.options}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Order # </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Option Name </mat-header-cell>
+                <mat-cell *matCellDef="let element"> <a aria-label mat-button [routerLink]="['/admins/servicereport', {id: element.id, options: element.options}]">{{element.name}}</a><img *ngIf="element.name =='Floor covering color'" src='../../../assets/images/{{element.options}}'></mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="pc">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Pc </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.qty}} <span *ngIf="element.name =='Floor covering color'">m²</span></mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="price">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Price</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.price}} &euro;</mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+</div>

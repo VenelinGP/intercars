@@ -1,0 +1,61 @@
+.details {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    max-width: 1000px;
+    margin: 0 auto 25px;
+    background: white;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.top {
+    position: relative;
+    top: 20px;
+}
+
+.row {
+    width: 100%;
+}
+
+.col-1 {
+    display: inline-block;
+    width: 49%;
+}
+
+.col-1 h3 {
+    vertical-align: top;
+}
+
+.inline {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.select {
+    width: 90%;
+}
+
+.logos {
+    height: 100px;
+}
+
+.expand {
+    /* align-items: unset;
+    flex-direction: unset; */
+    height: 100% !important;
+    /* background-color: lightcyan; */
+}
+
+a {
+    text-decoration: none;
+}
+
+.second {
+    vertical-align: top;
+}

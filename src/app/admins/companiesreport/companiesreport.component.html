@@ -1,0 +1,49 @@
+<div class="details">
+
+    <mat-toolbar color="primary">
+        <h2>Companies Report</h2>
+        <span class="example-fill-remaining-space"></span>
+        <button mat-button (click)="exportToExcel()"><fa name="file-excel-o" size='2x'></fa></button>
+    </mat-toolbar>
+    <div class="header">
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+    </div>
+    <div class="container mat-elevation-z8">
+        <!--'id', 'name', 'company', 'email', 'exhibitorscount', 'created', 'updated'' -->
+        <mat-table #table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Id # </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Authorised Exhibitor </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.name}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="company">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </mat-header-cell>
+                <mat-cell *matCellDef="let element"> <a aria-label mat-button routerLink="/admins/companiesinfo/{{element.id}}">{{element.company}}</a><img *ngIf="element.company =='Floor covering color'" src='../../../assets/images/{{element.options}}'></mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="email">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.email}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="exhibitorscount">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Exhibitors </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.exhibitorscount}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="created">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Date created </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.created}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="updated">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Date edited</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.updated}} </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+</div>

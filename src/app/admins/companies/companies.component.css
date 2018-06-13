@@ -1,0 +1,59 @@
+.details {
+    display: flex;
+    width: 95%;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+
+/* "id", "name", "city", "country", "created_at", "updated_at", "edit" */
+
+.mat-column-id {
+    max-width: 5%;
+}
+
+.mat-column-name {
+    max-width: 22%;
+}
+
+.mat-column-city {
+    max-width: 15%;
+}
+
+.mat-column-country {
+    max-width: 15%;
+}
+
+.mat-column-created_at {
+    max-width: 20%;
+}
+
+.mat-column-updated_at {
+    max-width: 20%;
+}
+
+.mat-column-edit {
+    text-align: center;
+    max-width: 9%;
+}
+
+.fab {
+    padding: 15px 15px 15px 0;
+}
+
+.mat-fab {
+    position: relative;
+    float: right;
+}
+
+.edit {
+    color: #2c3b4c;
+}
+
+.center {
+    text-align: center;
+}

@@ -1,0 +1,23 @@
+.admindetails {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    margin: 0 auto;
+}
+
+.btn {
+    width: 100%
+}
+
+.mat-raised-button {
+    position: relative;
+    float: right;
+}
+
+.mat-form-field {
+    display: block;
+}
+
+.mat-card-content {
+    padding: 0 7%;
+}

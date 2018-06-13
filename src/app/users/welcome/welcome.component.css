@@ -1,0 +1,31 @@
+.details {
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    margin: 0 auto;
+}
+
+.whi {
+    padding: 0 20px;
+    /* background: #cf1e35;
+    color: white; */
+    /* text-align: center; */
+}
+
+.clearfix {
+    overflow: auto;
+}
+
+.leftmargin {
+    margin-left: 40px;
+}
+
+.note,
+.rednote {
+    text-decoration: underline;
+    display: inline;
+}
+
+.rednote {
+    color: #cf1e35;
+}

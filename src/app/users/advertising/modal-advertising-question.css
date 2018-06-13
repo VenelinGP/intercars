@@ -1,0 +1,16 @@
+.row {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+p {
+    text-align: center;
+}

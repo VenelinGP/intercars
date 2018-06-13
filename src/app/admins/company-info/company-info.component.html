@@ -1,0 +1,131 @@
+<div class="details">
+    <mat-toolbar color="primary">
+        <h2>Company Name: {{company.name}}</h2>
+    </mat-toolbar>
+    <mat-card>
+        <div class="row">
+            <div class="col-1">
+                <h3>Address: </h3>
+                <p>{{company.address}}</p>
+                <p>{{company.postcode}}, {{company.city}}</p>
+                <h4>{{company.country}}</h4>
+                <h4 class="inline">Tax ID:</h4><span>{{company.EIK}}</span>
+            </div>
+            <div class="col-1 second">
+                <h3>Address for Invoice: </h3>
+                <p>{{invoice_address[3]}}</p>
+                <p>{{invoice_address[2]}}, {{invoice_address[1]}} </p>
+                <p><strong>{{invoice_address[0]}}</strong></p>
+
+            </div>
+        </div>
+        <div class="container">
+            <div class="col-1">
+                <h3 class="inline">Payment method: </h3>
+                <span class="top">{{company.paymentMethod}}</span>
+            </div>
+            <div class="col-1">
+                <p>{{company.comment}}</p>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="row">
+            <h3>Users:</h3>
+            <!-- 'name', 'position', 'role', 'email' -->
+            <mat-table #table [dataSource]="dataSource">
+                <ng-container matColumnDef="name">
+                    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="position">
+                    <mat-header-cell *matHeaderCellDef> Position </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.position}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="role_id">
+                    <mat-header-cell *matHeaderCellDef> Role </mat-header-cell>
+                    <mat-cell *matCellDef="let element"><span *ngIf="element.role_id == 3">Authorised Exhibitor</span><span *ngIf="element.role_id == 4">Exhibitor</span></mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="email">
+                    <mat-header-cell *matHeaderCellDef> E-mail </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="row" *ngIf="plates.length > 0">
+            <h3>Plates: </h3>
+            <mat-list>
+                <mat-list-item *ngFor="let plate of plates">
+                    <p> {{plate.name}} </p>
+                </mat-list-item>
+            </mat-list>
+        </div>
+        <mat-divider *ngIf="plates.length > 0"></mat-divider>
+        <div class="row logos" class="expand" *ngIf="bookedAreas.length > 0" [ngClass]="{'expand':files.length > 0}">
+            <h3>Logos for current Booth</h3>
+            <mat-form-field class="select">
+                <mat-select [(value)]="selected" (change)="show()">
+                    <mat-option *ngFor="let booked of bookedAreas" [value]="booked.value">{{ booked.viewValue }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="files.length > 0">
+                <mat-list>
+                    <mat-list-item *ngFor="let file of files">
+                        <span>Uploaded File:</span>
+                        <a target="_blank" href="{{filePath}}/{{file.name}}">
+                            <mat-icon color='accent' mat-list-icon>get_app</mat-icon>
+                        </a><span>{{file.name}}</span>
+                    </mat-list-item>
+                </mat-list>
+            </div>
+
+        </div>
+        <mat-divider *ngIf="bookedAreas.length > 0"></mat-divider>
+        <div class="row">
+            <h3>Presentations and Audio</h3>
+            <div>
+                <p class="inline">Want presentation: </p>
+                <span>{{want_presentation}}</span>
+            </div>
+            <div>
+                <p class="inline">Want interpreter: </p>
+                <span>{{want_translator}}</span>
+            </div>
+            <div>
+                <p class="inline">Want audio installation: </p>
+                <span>{{want_audio}}</span>
+            </div>
+
+        </div>
+        <mat-divider></mat-divider>
+        <div class="row" *ngIf=" full_magazine_info != null || full_file != null || half_magazine_info != null || half_file != null">
+            <h3>Fair guide files and description</h3>
+            <div class="col-1">
+                <div *ngIf="full_magazine_info != null">
+                    <h4>Full Desription:</h4>
+                    <p>{{full_magazine_info}}</p>
+                </div>
+                <div *ngIf="full_file != null">
+                    <h4>Uploaded File:</h4>
+                    <a target="_blank" href="{{filePath}}/{{full_file}}">
+                        <mat-icon color='accent' mat-list-icon>get_app</mat-icon>
+                    </a><span>{{full_file}}</span>
+                </div>
+            </div>
+            <div class="col-1">
+                <div *ngIf=" ">
+                    <h4>Half Desription:</h4>
+                    <p>{{half_magazine_info}}</p>
+                </div>
+                <div *ngIf="half_file != null">
+                    <h4>Uploaded File:</h4>
+                    <a target="_blank" href="{{filePath}}/{{half_file}}">
+                        <mat-icon color='accent' mat-list-icon>get_app</mat-icon>
+                    </a><span>{{half_file}}</span>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+</div>

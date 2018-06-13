@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">
+    <h2>Edit Order# {{data.id}} Details</h2>
+</mat-toolbar>
+<div mat-dialog-content>
+    <p><strong>Booth type: </strong>{{data.boothtype}} - {{data.areasqm}} m²</p>
+    <p> <strong>Area type: </strong> {{data.areatype}} </p>
+    <p>
+        <strong>Area sqm: </strong>
+        <mat-form-field><input matInput [(ngModel)]="data.areasqm"></mat-form-field> m²
+    </p>
+    <p>
+        <strong>Total price: </strong>
+        <mat-form-field><input matInput [(ngModel)]="data.total"></mat-form-field> &euro;
+    </p>
+    <p><strong>Date: </strong>{{data.date}}</p>
+</div>
+<div class="row">
+    <button color="primary" mat-raised-button class="left" (click)="onNoClick()">Cancel</button>
+    <button color="primary" mat-raised-button class="right" [mat-dialog-close]="{success: true, data: data}" cdkFocusInitial>Save</button>
+</div>

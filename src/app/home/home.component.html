@@ -1,0 +1,9 @@
+﻿<div>
+    <div *ngIf="isAdmin">
+        <app-admins></app-admins>
+    </div>
+    <div *ngIf="isExhibitor">
+        <app-users></app-users>
+    </div>
+    <p><a [routerLink]="['/login']">Logout</a></p>
+</div>

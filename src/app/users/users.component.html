@@ -1,0 +1,61 @@
+<mat-toolbar color="accent" class="example-toolbar">
+    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <img class="logo" src="../../assets/images/logo_2018.jpg" alt="logo" />
+    <span class="fill-remaining-space">
+    </span>
+    <div>
+        <a mat-button [routerLink]="['/login']">Logout</a>
+    </div>
+</mat-toolbar>
+
+<mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" opened>
+        <mat-nav-list>
+            <button class="dashboard" mat-button routerLink="/users/welcome">Dashboard</button>
+            <h4>Profile</h4>
+            <a mat-button routerLink="/users/profile">Company details</a>
+
+            <a mat-button *ngIf="isRoute" routerLink="/users/details">User details</a>
+            <a mat-button *ngIf="!isRoute" class="disabled" (click)="show()">User details</a>
+
+            <a mat-button *ngIf="isRoute" routerLink="/users/management">User management</a>
+            <a mat-button *ngIf="!isRoute" class="disabled" (click)="show()">User management</a>
+            <h4>Orders</h4>
+            <a mat-button *ngIf="isRoute" routerLink="/users/orders">Exhibition area</a>
+            <a mat-button *ngIf="!isRoute" class="disabled">Exhibition area</a>
+
+            <a mat-button *ngIf="isRoute && isHasBooths" routerLink="/users/services" (change)="countChange($event)">Additional Services</a>
+            <a mat-button *ngIf="!isRoute || !isHasBooths" class="disabled" (change)="countChange($event)">Additional Services</a>
+
+            <!-- TODO -->
+            <a mat-button *ngIf="isRoute" routerLink="/users/advertising">Advertising Services</a>
+            <a mat-button *ngIf="!isRoute" class="disabled">Advertising Services</a>
+
+            <a mat-button *ngIf="isRoute" routerLink="/users/others">Other Services</a>
+            <a mat-button *ngIf="!isRoute" class="disabled">Other Services</a>
+
+
+            <h4>Summary Reports</h4>
+            <a mat-button *ngIf="isRoute" routerLink="/users/reporders" routerLinkActive="active">Exhibition Area</a>
+            <a mat-button *ngIf="!isRoute" class="disabled">Exhibition Area</a>
+
+            <a mat-button *ngIf="isRoute && isHasBooths" routerLink="/users/repservices" routerLinkActive="active">Additional Services</a>
+            <a mat-button *ngIf="!isRoute || !isHasBooths" class="disabled">Additional Services</a>
+
+            <a mat-button *ngIf="isRoute" routerLink="/users/repadvertising" routerLinkActive="active">Advertising Services</a>
+            <a mat-button *ngIf="!isRoute" class="disabled">Advertising Services</a>
+
+            <a class="dashboard" mat-button *ngIf="isRoute" routerLink="/users/status" routerLinkActive="active">Current Status</a>
+
+            <!-- <h4 (change)="countChange($event)">IS: {{isNotBooths}}</h4> -->
+
+
+            <!-- <a mat-button *ngIf="isRoute" routerLink="/users/status" routerLinkActive="active"><h4>Current status</h4></a>
+            <a mat-button *ngIf="!isRoute" class="disabled"><h4>Current status</h4></a> -->
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

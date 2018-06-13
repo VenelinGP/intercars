@@ -1,0 +1,65 @@
+.details {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto 25px;
+}
+
+.mat-table {
+    overflow: auto;
+    max-height: 500px;
+}
+
+.mat-header-cell.mat-sort-header-sorted {
+    color: black;
+}
+
+.header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+    /* background-color: #e4e3e6; */
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+    display: block;
+}
+
+.mat-column-id {
+    max-width: 8%;
+}
+
+.mat-column-companyname {
+    max-width: 34%;
+}
+
+.mat-column-area {
+    max-width: 40%;
+}
+
+.mat-column-pc {
+    max-width: 12%;
+}
+
+.mat-column-price {
+    max-width: 12%;
+}
+
+.total {
+    padding: 15px;
+    margin-right: 25px;
+    float: right;
+}
+
+img {
+    position: relative;
+    top: 3px;
+    left: 30px;
+    height: 20px;
+}
+
+.example-fill-remaining-space {
+    flex: 1 1 auto;
+}

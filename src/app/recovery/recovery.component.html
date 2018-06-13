@@ -1,0 +1,20 @@
+<mat-toolbar color="accent">
+    <img src="../../assets/images/logo_2018.jpg" alt="logo" />
+</mat-toolbar>
+<div class="recovery">
+    <mat-card class="login-card">
+        <mat-card-header>
+            <mat-card-content class="login-content">
+                <mat-toolbar color="primary">
+                    <h2>Recovery Password</h2>
+                </mat-toolbar>
+                <div class="login-container">
+                    <mat-form-field>
+                        <input #email matInput placeholder="E-mail" type="email" required>
+                    </mat-form-field>
+                </div>
+                <button mat-raised-button color="primary" (click)="recovery(email.value)">Send</button>
+            </mat-card-content>
+        </mat-card-header>
+    </mat-card>
+</div>

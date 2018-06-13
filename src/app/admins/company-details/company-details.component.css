@@ -1,0 +1,72 @@
+.details {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    margin: 0 auto;
+}
+
+.btn {
+    width: 100%
+}
+
+.mat-raised-button {
+    position: relative;
+    float: right;
+}
+
+.inputAddress {
+    width: 100% !important;
+}
+
+.invoice .mat-checkbox {
+    width: 29% !important;
+}
+
+.mat-grid-tile {
+    background: lightblue;
+}
+
+.invoiceadd {
+    width: 100%;
+}
+
+.radiobtn {
+    padding: 10px 10px 10px 20px;
+    width: 16%;
+}
+
+.radiobtn .mat-radio-button {
+    margin: 3px;
+}
+
+.mat-form-field {
+    display: block;
+}
+
+.mat-card-content {
+    padding: 0 7%;
+}
+
+.section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 75px;
+    margin: 15px 0 15px 0;
+}
+
+.mat-checkbox {
+    padding-right: 16px;
+}
+
+h4 {
+    text-align: justify;
+}
+
+.mat-checkbox-checked {
+    color: hotpink;
+}
+
+.selection {
+    margin-bottom: 25px;
+}

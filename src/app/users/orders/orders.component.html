@@ -1,0 +1,215 @@
+<div class="details">
+    <mat-toolbar color="primary">
+        <h2>Exhibition Area</h2>
+    </mat-toolbar>
+    <div class="acc">
+        <h4><i>Plan of the Expo with location of the booth and confirmation of the booth size will be delivered after 01.06.2018. Places will be distributed in the same order as applications reach Inter Cars.</i></h4>
+    </div>
+    <mat-card>
+        <div class="centertext">
+            <h4>The booths and areas could be ordered only by the authorized exhibitor. Once confirmed, order changes for booths and areas could be made only by an Inter Cars Administrator at bg.expo@intercars.eu. The menu Additional Services will be activated
+                when you confirm your order of booth and/or area and you will be able to upgrade your choice. </h4>
+            <h4>Booth Availability – Handover on 29.06.2018</h4>
+            <h4>Booths shall be available to Exhibitors one day before the Expo on 29.06. from 9 AM. Final set up from Your side should be completed by the end of the day before the Expo day as follows Friday, 29.06. until 5 PM.</h4>
+        </div>
+
+        <br>
+        <br>
+        <div class="center">
+            <button *ngIf='!isCoExhibitor' mat-raised-button class="area" color="primary" value="1" (click)="btnChange(1)">Choose Area</button>
+            <button *ngIf='isCoExhibitor' mat-raised-button class="area" disabled (click)="show()">Choose Area</button>
+            <button *ngIf='!isCoExhibitor' mat-raised-button class="area" color="primary" value="2" (click)="btnChange(2)">Choose Standard Booth</button>
+            <button *ngIf='isCoExhibitor' mat-raised-button class="area" disabled (click)="show()">Choose Standard Booth</button>
+        </div>
+        <br>
+        <br>
+        <div *ngIf="isStandartBoothsBtn">
+            <br><br>
+            <label><b>Choose booth:</b></label>
+            <br>
+            <mat-radio-group [(ngModel)]="selectedDefaultBooth" class="vertical">
+                <div *ngFor="let item of booths">
+                    <mat-radio-button [value]="item" [checked]="item.want==true" (change)="radioChange(item)">{{ item.name }} - <b>{{ item.price }}&euro;</b></mat-radio-button>
+                    <mat-grid-list cols="2" rowHeight="250px">
+                        <div style="color:#fff">Dimensions 4x4 m, two walls with height 2.5 m, frieze with company logo prepared by IC. Standard equipment & fitted carpet, table, 4 chairs, tabletop, waste bin, coat hanger, lightning point, socket 220V.</div>
+                        <mat-grid-tile><img src="../../assets/images/{{item.img}}" /></mat-grid-tile>
+                        <mat-grid-tile>{{ item.description }}</mat-grid-tile>
+
+                    </mat-grid-list>
+                </div>
+            </mat-radio-group>
+            <br><br>
+            <div *ngIf="selectedDefaultBooth">
+                <div *ngIf="selectedDefaultBooth.options.length">
+                    <label><b>The following equipment is included in the booth package that you have selected. You could uncheck each element that you don't need.</b></label>
+                    <br>
+                    <br>
+                    <mat-list *ngFor="let item of selectedDefaultBooth.options; let i = index">
+                        <mat-list-item *ngIf="item.name !='color'">
+                            <mat-checkbox [checked]="checked" (click)="optionCheck(i, item)"></mat-checkbox>
+                            <div *ngIf="item.name =='Floor covering color'">
+                                <section class="col-1">
+                                    <div class="inline">
+                                        <span class="test">{{ item.name }}</span>
+                                        <img class="floor" src="../../../assets/images/6.jpg">
+                                    </div>
+                                </section>
+                            </div>
+                            <div *ngIf="(item.name !='Floor covering color')">
+                                <span *ngIf="item.name !='Chair, visitor'">{{ item.name }} x {{item.qty}}</span>
+                                <span *ngIf="item.name =='Chair, visitor'">{{ item.name }} x </span>
+                                <input #chairqty *ngIf="item.name =='Chair, visitor'" matInput [(ngModel)]="item.qty" type="number" min="1" max="4" (change)="onKeyChair(item.qty)">
+                            </div>
+                        </mat-list-item>
+                    </mat-list>
+
+                    <!-- OLD Code -->
+                    <!-- <section class="vertical">
+                        <mat-checkbox *ngFor="let item of selectedDefaultBooth.options; let i = index" [checked]="checked" (click)="optionCheck(i, item)">
+                            <div *ngIf="item.name =='Floor covering color'">
+                                <section class="col-1">
+                                    <div class="inline">
+                                        <span class="test">{{ item.name }} x {{item.qty}}</span>
+                                    </div>
+                                    <div class="inline">
+                                        <section class="test colorselect">
+                                            <mat-form-field class="dropdown">
+                                                <mat-select placeholder="Choose color" [formControl]="floorColor" [ngClass]=floorColor.value>
+                                                    <mat-option *ngFor="let color of colors" [value]="color.value"><img class="floor" src={{color.viewValue}}></mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </section>
+                                    </div>
+                                </section>
+                            </div>
+                            <div *ngIf="item.name !='Floor covering color'">
+                                <span *ngIf="item.name !='Chair 1'">{{ item.name }} x {{item.qty}}</span>
+                                <span *ngIf="item.name =='Chair 1'">{{ item.name }} x </span>
+                                <input #chairqty *ngIf="item.name =='Chair 1'" matInput [(ngModel)]="item.qty" type="number" min="1" max="4" (change)="onKeyChair(item.qty)">
+                            </div>
+                        </mat-checkbox>
+                    </section>
+ -->
+                    <!-- OLD Code -->
+                </div>
+            </div>
+            <hr>
+            <div class="summary-price">
+                <div>Booth: {{ selectedDefaultBooth.name }} </div>
+                <div>Total: {{ calcTotal() }} &euro; </div>
+            </div>
+            <br>
+            <button mat-raised-button color="primary" (click)="openDialog()">Submit order</button>
+
+        </div>
+        <div *ngIf="isBuyAreaBtn">
+            <br>
+            <mat-radio-group [(ngModel)]="selectedArea" class="vertical">
+                <div *ngFor="let item of areaPricesGet">
+                    <mat-radio-button [value]="item" (change)="areaChange(item)">{{item.title}}</mat-radio-button>
+                    <mat-icon color='accent' *ngIf="!(item.img == null && item.description == null)" (click)="onFocus(item.id)">info_outline</mat-icon>
+                    <span *ngIf="isSelectedArea(item)">
+                        <span *ngIf="item.name=='area_price_with_SA'"> - <strong>{{ calcAreaPrice(item) }}&euro;</strong> - 4m²</span>
+                    <span *ngIf="item.name!='area_price_with_SA'"> - <strong>{{ item.price }}&euro;/m²</strong> x {{ area }}m² = <strong>{{ calcAreaPrice(item) }}&euro;</strong></span>
+                    </span>
+                    <span *ngIf="item.name=='area_price_with_SA'">
+                        <br>
+                        <label>
+                            <b>Choose area and fill in desired m²:</b>
+                            <input [(ngModel)]="area" placeholder="Area in m²" type="number" value="0" min="0" max="5000">
+                        </label>
+                        <br>
+                    </span>
+                </div>
+            </mat-radio-group>
+            <hr>
+            <!-- selectedArea -->
+            <!-- <div *ngIf="false">
+                <div *ngIf="selectedArea.name!='area_price_with_SA' && selectedArea.name!='area_price_with_Outdoor_3'">
+                    <br>
+                    <label><b>Choose booth and fill in the booth's size in m²:</b>
+                        <input [(ngModel)]="area_booth_create" placeholder="Area in m²" type="number" value="0" min="1" [max]="area"></label><br>
+                    <mat-radio-group [(ngModel)]="selectedBooth" class="vertical">
+                        <mat-radio-button *ngFor="let item of booths_prices" [value]="item" (change)="areaChange(item)">
+                            {{ item.title }}
+                            <span *ngIf="isSelectedBooth(item)">
+                                <span *ngIf="item.name=='booth_create'">
+                                    - <b>{{ item.price }}&euro;/m²</b>
+                                    x {{ area_booth_create }}m²
+                                    = <strong>{{ calcBoothPrice(item) }}&euro;</strong>
+                                </span>
+                                <span *ngIf="item.name=='area_price_with_SA'">
+                                    - <b>{{ item.price }}&euro;</b>
+                                    - 4m²2132132112
+                                </span>
+                                <span *ngIf="item.name=='booth_montage'">
+                                    - <b>{{ item.price }}&euro;/m²</b>
+                                    x {{ area_booth_create }}m²
+                                = <strong>{{ calcBoothPrice(item) }}&euro;</strong>
+                                </span>
+                            </span>
+                        </mat-radio-button>
+                    </mat-radio-group>
+                    <hr>
+                </div>
+
+            </div> -->
+
+            <!-- <mat-list>
+                <mat-list-item *ngFor="let item of area_prices">
+                    <mat-checkbox [value]="item.name" (change)="changeArea(item)">{{ item.title }}</mat-radio-button>
+                </mat-list-item>
+            </mat-list> -->
+
+
+            <div class="summary-price">
+                <div class="title" *ngIf="selectedArea.name != 'area_price_with_SA'">Ordered Area: {{ area }}m²</div>
+                <div class="title" *ngIf="selectedArea.name == 'area_price_with_SA'">Ordered Area: 4m²</div>
+                <div class="title">{{ selectedArea.title }}: {{ total_area_price }} &euro;</div>
+                <div class="title" *ngIf="selectedArea.name!='area_price_with_SA' && total_booth_price > 0">{{ selectedBooth.title }}: {{ total_booth_price }} &euro;</div>
+                <div class="title">Total: {{ calcTotal() }} &euro;</div>
+                <br>
+                <!-- SAMO AKO FIRMATA e V BG se pokazva
+                    <div class="title">VAT: {{ calcTotal() * 0.2 }} &euro;</div>
+                <div class="title">Total (VAT incl.): {{ (calcTotal() * 0.2) + calcTotal() }} &euro;</div> -->
+                <br>
+            </div>
+            <button mat-raised-button color="primary" (click)="openDialog()">Submit order</button>
+        </div>
+    </mat-card>
+</div>
+<div class="details">
+    <mat-toolbar color="primary">
+        <h2>Order History</h2>
+    </mat-toolbar>
+    <mat-card>
+        <mat-list>
+            <mat-list-item *ngFor="let booked of bookedAreas">
+                <div *ngIf='booked.booth'>
+                    <p mat-line><strong>Ordered area: </strong>{{booked.areaOrder}}m²</p>
+                    <p mat-line *ngIf="booked.areaPrice > 0"><strong>{{booked.areaName}}: </strong>{{booked.areaPrice}} €</p>
+                    <p mat-line *ngIf="booked.areaPrice > 0"><strong>Booth: </strong>{{booked.boothArea}}m²</p>
+                    <p mat-line><strong>{{booked.boothName}}: </strong>{{booked.price}} €</p>
+                    <p mat-line><strong>Total: </strong>{{booked.areaPrice + booked.price}} €</p>
+                    <hr mat-line>
+                </div>
+                <div *ngIf='!booked.booth'>
+                    <p mat-line><strong>Ordered area:</strong> {{booked.areaOrder}}m²</p>
+                    <p mat-line><strong>Booth:</strong> {{booked.areaName}}</p>
+                    <p mat-line><strong>Total:</strong> {{booked.areaPrice}} € </p>
+                    <hr mat-line>
+                </div>
+                <!-- <b> Area: m² Price:  €</b> -->
+            </mat-list-item>
+        </mat-list>
+    </mat-card>
+</div>
+<div class="details">
+    <mat-card>
+        <h4>During the Fair there is possibility of designing and realizing an extra exhibition booth (design paid extra). In order to realize such a project we recommend the company which deals with our whole EXPO.</h4>
+        <h4 class="name">FAIRNET Bulgaria Ltd.</h4>
+        <p class="info">Tel.: +359 32/680 063, 680 511</p>
+        <p class="info">Mobile: +359 889 510 706</p>
+        <p class="info">E-mail: bg.stands@intercars.eu</p>
+    </mat-card>
+</div>

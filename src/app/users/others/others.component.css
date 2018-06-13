@@ -1,0 +1,45 @@
+.details {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    margin: 0 auto 25px;
+}
+
+.mat-raised-button {
+    position: relative;
+    float: right;
+}
+
+.mat-icon {
+    vertical-align: middle !important;
+}
+
+.mat-form-field {
+    padding-left: 40px;
+    width: 60px;
+}
+
+.select {
+    width: 90%;
+}
+
+.hide-it {
+    display: none;
+}
+
+.interpPrice {
+    padding-left: 20px;
+}
+
+description {
+    padding: 10px;
+}
+
+.people {
+    width: 100%;
+}
+
+.area {
+    margin: 10px auto 25px;
+    width: 78%;
+}

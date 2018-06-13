@@ -1,0 +1,152 @@
+<div class="details">
+    <mat-toolbar color="primary">
+        <h2>Address of Inter Cars Expo BG 2018</h2>
+    </mat-toolbar>
+    <mat-card>
+        <h4>INTERNATIONAL FAIR PLOVDIV</h4>
+        <h4>37, Tzar Boris III - Obedinitel Blvd.</h4> 
+        <h4>4003, Plovdiv, BULGARIA</h4>
+
+    </mat-card>
+</div>
+<div class="details">
+    <mat-toolbar color="primary">
+        <h2>Accommodation</h2>
+    </mat-toolbar>
+    <mat-card>
+        <h4><i>We offer you the possibility of booking rooms in Grand Hotel Plovdiv at the rates of 50 EUR per person in double room and 75 EUR per person in single room. Booking and further changes are done
+                    individually by the Exhibitors. The contact e-mail for hotel bookings is reservations@tripseu.com. The password (could be placed as a title of the e-mail) is Inter Cars Expo 2018. You can also book transfers or rent-a-car services if needed.</i></h4>
+
+    </mat-card>
+</div>
+<div class="details">
+    <mat-toolbar color="primary">
+        <h2>Presentations and Trainings</h2>
+    </mat-toolbar>
+    <mat-card>
+        <h4>Would you like to be a part of the presentation and conference schedule? We know that the biggest interest is in technical and product presentations. If you are interested in presenting, type in information which will help us prepare a training
+            schedule. Single presentation should not be longer than 45 minutes. The schedule of trainings will be prepared with the same order as application arrive to us.</h4>
+        <section>
+            <span><strong>Are you interested in presenting?</strong></span>
+            <mat-form-field>
+                <mat-select [(value)]="want_presentation">
+                    <mat-option value="yes">Yes</mat-option>
+                    <mat-option value="no">No</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </section>
+        <section>
+            <span><strong>Do you need an interpreter?</strong></span>
+            <mat-form-field>
+                <mat-select [(value)]="want_translator">
+                    <mat-option value="yes">Yes</mat-option>
+                    <mat-option value="no">No</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <span class="interpPrice" *ngIf="want_translator == 'yes'"> Price: 50 &euro; / per hour</span>
+        </section>
+        <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+    </mat-card>
+</div>
+<div class='details'>
+    <mat-toolbar color="primary">
+        <h2>Frieze with company logo</h2>
+    </mat-toolbar>
+    <mat-card>
+        <!-- FILE UPLOAD -->
+        <div>
+            <h3>Please attach the company logo, that will be visualized at the frieze of Your booth.</h3>
+            <p>Supported logo formats: .pdf, .cdr, .eps, .ai</p>
+        </div>
+        <div layout="row">
+            <mat-form-field class="select">
+                <mat-select [(value)]="selected" (change)="show()">
+                    <mat-option *ngFor="let booked of bookedAreas" [value]="booked.value">{{ booked.viewValue }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div layout="row">
+            <input flex="1" id="fileInput" class="hide-it" type="file" multiple (change)="fileChange($event.target.files)">
+            <button mat-raised-button color="primary" [disabled]="!isNotEmpty" (click)="upload()">Upload</button>
+            <button mat-raised-button (click)="openInput()">Select File to Upload</button>
+        </div>
+        <div>
+            <section *ngIf="isNotEmpty">
+                <p>Added Files:</p>
+                <mat-list>
+                    <mat-list-item *ngFor="let image of logos">File: {{image.name}}</mat-list-item>
+                </mat-list>
+            </section>
+        </div>
+        <br>
+        <br>
+        <div layout="row">
+            <mat-list>
+                <div *ngIf="files.length > 0">
+                    <h3 mat-subheader>Uploaded Logos</h3>
+                    <mat-list-item *ngFor="let file of files">
+                        <h4 mat-line>
+                            <a target="_blank" download href="{{file.link}}">
+                                <mat-icon color='accent' mat-list-icon>get_app</mat-icon>
+                            </a> {{file.name}}</h4>
+                    </mat-list-item>
+                </div>
+                <div *ngIf="files.length==0">
+                    <h3 mat-subheader>No Logos Attached.</h3>
+                </div>
+            </mat-list>
+        </div>
+        <!-- FILE UPLOAD -->
+
+    </mat-card>
+</div>
+
+<div class='details'>
+    <mat-toolbar color="primary">
+        <h2>Storing your marketing materials</h2>
+    </mat-toolbar>
+    <mat-card>
+        <h4>We have foreseen warehouse space for marketing materials which you will need on the Expo day. If you want to send such materials, please contact us on bg.expo@intercars.eu in order to discuss the delivery details of the package.</h4>
+    </mat-card>
+</div>
+<div class='details'>
+    <mat-toolbar color="primary">
+        <h2>Additional Invitations</h2>
+    </mat-toolbar>
+    <mat-card>
+        <h4>If you would like to purchase invitations for Inter Cars Expo BG 2018, please contact us on <a href="mailto:bg-expo@intercars.eu">bg-expo@intercars.eu</a></h4>
+    </mat-card>
+</div>
+
+<div class='details'>
+    <mat-toolbar color="primary">
+        <h2>Audio</h2>
+    </mat-toolbar>
+    <mat-card>
+        <section>
+            <span><strong>Do you plan to use your own audio installation?</strong></span>
+            <mat-form-field>
+                <mat-select [(value)]="want_audio">
+                    <mat-option value="yes">Yes</mat-option>
+                    <mat-option value="no">No</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </section>
+        <button mat-raised-button color="primary" (click)="submitAudio()">Submit</button>
+    </mat-card>
+</div>
+
+<div class='details'>
+    <mat-toolbar color="primary">
+        <h2>ID Plates</h2>
+    </mat-toolbar>
+    <mat-card>
+        <div class="area">
+            <div class="description"> Names and Surnames of people participating in the Fair.</div>
+            <mat-form-field class="people">
+                <textarea #names [(ngModel)]="textValue" matInput rows="4" cols="60" placeholder="Name and Surname"></textarea>
+            </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary" (click)="submitPlates(names.value)">Submit</button>
+    </mat-card>
+</div>

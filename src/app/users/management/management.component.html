@@ -1,0 +1,98 @@
+<div class="details">
+    <mat-toolbar color="primary">
+        <h2>User Management</h2>
+    </mat-toolbar>
+    <!-- TODO -->
+    <!-- <h3>{{user.company_id}}</h3> -->
+    <div class="header">
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+    </div>
+    <div class="container mat-elevation-z8">
+
+        <mat-table [dataSource]="dataSource" matSort>
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+                <mat-header-cell showColumn showInput="none" *matHeaderCellDef> ID </mat-header-cell>
+                <mat-cell showColumn showInput="none" *matCellDef="let row">{{row.id}} </mat-cell>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+            </ng-container>
+
+            <!-- Email Column -->
+            <ng-container matColumnDef="email">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.email}}</mat-cell>
+            </ng-container>
+
+            <!-- Phone Column -->
+            <ng-container matColumnDef="phone">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Phone </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.phone}} </mat-cell>
+            </ng-container>
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="position">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Position </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.position}} </mat-cell>
+            </ng-container>
+
+            <!-- Role Column -->
+            <ng-container matColumnDef="role">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Role </mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.rolename}}</mat-cell>
+            </ng-container>
+
+            <!-- Edit Column -->
+            <ng-container matColumnDef="edit">
+                <mat-header-cell *matHeaderCellDef>Edit</mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <div *ngIf="isExhibitor && row.rolename == 'Exhibitor'">
+                        <a aria-label mat-button routerLink="/users/management/{{row.id}}">
+                            <mat-icon aria-hidden="true" class="edit">edit</mat-icon>
+                        </a>
+                    </div>
+                </mat-cell>
+            </ng-container>
+
+            <!-- Block Column -->
+            <ng-container matColumnDef="block">
+                <mat-header-cell *matHeaderCellDef>Block/Unblock</mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <div *ngIf="isExhibitor && row.rolename == 'Exhibitor'">
+                        <div *ngIf="!(row.is_block == 1)">
+                            <a aria-label mat-button (click)="block(row.id)" matTooltip="Block!" matTooltipPosition="above">
+                                <mat-icon aria-hidden="true" class="edit">block</mat-icon>
+                            </a>
+                        </div>
+                        <div *ngIf="(row.is_block == 1)">
+                            <a aria-label mat-button (click)="unblock(row.id)" matTooltip="Unblock!" matTooltipPosition="above">
+                                <mat-icon aria-hidden="true" class="edit">undo</mat-icon>
+                            </a>
+                        </div>
+                    </div>
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="is_block">
+                <mat-header-cell showColumn showInput="none" *matHeaderCellDef mat-sort-header> is_block </mat-header-cell>
+                <mat-cell showColumn showInput="none" *matCellDef="let row"> {{row.is_block}} </mat-cell>
+            </ng-container>
+
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            </mat-row>
+        </mat-table>
+        <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+    <div class="fab">
+        <button mat-fab color="primary" (click)="openDialog()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="exhibitordetails">
+    <mat-toolbar color="primary">
+        <h2>Edit Authorized Exhibitor Details</h2>
+    </mat-toolbar>
+    <mat-card>
+        <h4>Authorized Exhibitor: {{exhibitor.email}}</h4>
+        <mat-card-content>
+            <!-- <h3 color="accent" *ngIf="newCompanyId == 0">Select Company: </h3> -->
+            <mat-form-field class="selection">
+                <mat-select placeholder="Company name" [(value)]="newCompanyId" name="companyMethod">
+                    <mat-option *ngFor="let company of companies" [value]="company.id">{{company.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <input #fullname matInput placeholder="Full name" [value]="exhibitor.name">
+            </mat-form-field>
+            <mat-form-field>
+                <input #email matInput placeholder="Email" [value]="exhibitor.email">
+            </mat-form-field>
+            <mat-form-field>
+                <input #phone matInput placeholder="Phone" [value]="exhibitor.phone">
+            </mat-form-field>
+            <mat-form-field>
+                <input #position matInput placeholder="Position" [value]="exhibitor.position">
+            </mat-form-field>
+            <mat-form-field class="selection">
+                <mat-select placeholder="Role" [(value)]="roleValue" name="roleMethod">
+                    <mat-option *ngFor="let role of roles" [value]="role.value">{{role.viewValue}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <section>
+                <div>
+                    <h4>Created At: </h4><span>{{exhibitor.created_at}}</span>
+                </div>
+                <div>
+                    <h4>Updated At: </h4><span>{{exhibitor.updated_at}}</span>
+                </div>
+            </section>
+            <div class="btn">
+                <button mat-raised-button color="primary" (click)="save(newCompanyId, fullname.value, email.value, phone.value, position.value, roleValue)">Save</button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -1,0 +1,64 @@
+<div class="details">
+    <mat-toolbar color="primary">
+        <h2>Company Details</h2>
+    </mat-toolbar>
+    <mat-card>
+        <mat-card-content>
+            <mat-form-field>
+                <input #name matInput placeholder="Company name" [value]="currentCompany.name">
+            </mat-form-field>
+            <mat-form-field>
+                <input #address matInput placeholder="Street" [value]="currentCompany.address">
+            </mat-form-field>
+            <mat-form-field>
+                <input #pcode matInput placeholder="Post code" [value]="currentCompany.postcode">
+            </mat-form-field>
+            <mat-form-field>
+                <input type="text" matInput placeholder="Country" aria-label="Country" [matAutocomplete]="auto" [formControl]="countryValue" [value]="currentCompany.country">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let country of filteredOptions | async" [value]="country">
+                        <span>{{country}}</span>
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field>
+                <input #city matInput placeholder="City/Town" [value]="currentCompany.city">
+            </mat-form-field>
+            <mat-form-field>
+                <input #eik matInput placeholder="VAT" [value]="currentCompany.EIK">
+            </mat-form-field>
+            <section class="section">
+                <div class="invoiceadd">
+                    <mat-form-field>
+                        <textarea #invoiceaddress matInput rows="4" cols="40" placeholder="Address for invoice" [value]="invoiceAddress"></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="radiobtn">
+                    <mat-radio-group>
+                        <mat-radio-button value="1" (change)="radioChange($event, countryValue.value || currentCompany.country, city.value, pcode.value, address.value)" [checked]="isAbove" color="accent">As above</mat-radio-button>
+                        <mat-radio-button value="2" (change)="radioChange($event,'','','','')" [checked]="isOther" color="accent">Other</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+            </section>
+            <section class="section">
+                <mat-checkbox #checkbox [(ngModel)]="is_click"></mat-checkbox>
+                <h4>
+                    Hereby, we declare that our company is VAT tax payer with mentioned above VAT number and we authorize the organizer to issue a VAT invoice without our signature.
+                </h4>
+            </section>
+            <mat-form-field class="selection">
+                <mat-select placeholder="Payment method" [(ngModel)]="paymentValue" name="paymentMethod">
+                    <mat-option *ngFor="let payment of payments" [value]="payment.value">{{payment.viewValue}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="paymentValue == 'Compensation'">
+                <mat-form-field>
+                    <textarea #comment matInput rows="6" cols="60" placeholder="Please describe the mechanisms for compensation that you propose." [(ngModel)]="oldComment"></textarea>
+                </mat-form-field>
+            </div>
+            <div class="btn">
+                <button mat-raised-button color="primary" (click)="save(name.value, address.value, pcode.value, countryValue.value, city.value, eik.value, invoiceaddress.value, eik.value, is_click, paymentValue, oldComment)">Save</button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

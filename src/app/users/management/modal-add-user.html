@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+    <h2 mat-dialog-title>Invite Exhibitor</h2>
+</mat-toolbar>
+<div mat-dialog-content>
+    <mat-form-field>
+        <input matInput placeholder="Full name" [(ngModel)]="data.name" type="text" required>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="E-mail" [(ngModel)]="data.email" required>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Phone" [(ngModel)]="data.phone" type="tel">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Position" [(ngModel)]="data.position" type="text">
+    </mat-form-field>
+</div>
+<div>
+    <button mat-raised-button class="left" color="primary" (click)="onNoClick()">Cancel</button>
+    <button mat-raised-button class="right" color="primary" [mat-dialog-close]="data" cdkFocusInitial>Invite</button>
+</div>
